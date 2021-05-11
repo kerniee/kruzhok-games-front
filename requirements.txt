@@ -1,4 +1,6 @@
+waitress
 sqlalchemy
 gunicorn
 flask
 flask-login
+python-decouple

@@ -6,8 +6,9 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
         <link rel="stylesheet" href="{{ url_for('static', filename='css/libs/bootstrap.min.css') }}">
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/base.css') }}">
         {% block css %}{% endblock %}
-        <title>{% block title %}{% endblock %}</title>
+        <title>{% block title %}Командный игрок{% endblock %}</title>
 
         <!--
         <nav class="navbar navbar-light bg-light justify-content-end">
@@ -30,13 +31,74 @@
     {% endblock %}
 </head>
 <body>
-    <div id="content">{% block content %}{% endblock %}</div>
-    <script src="{{ url_for('static', filename='js/libs/popper.min.js') }}"></script>
-    <script src="{{ url_for('static', filename='js/libs/jquery-3.3.1.slim.min.js') }}"></script>
-    <script src="{{ url_for('static', filename='js/libs/bootstrap.min.js') }}"></script>
-    {% block js %}{% endblock %}
+<div id="nav-bar">{% block navbar %}
+    <nav class="navbar navbar-light">
+        <div class="logo">
+            <img alt="Логотип Платформа Кружкового движения"
+                 src="{{ url_for('static', filename='images/talent_symbol.svg') }}"
+                 class="logo-sym-big">
+            <div class="vl-line"></div>
+            <p>Комадный игрок</p>
+        </div>
+        <ul class="nav">
+            <li class="nav-item">
+                <a class="nav-link active" href="/">Главная</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/logout">Методология</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/login">Узнать свой уровень</a>
+            </li>
+        </ul>
+        {# {% if current_user.is_authenticated %} #}
+        {% if true %}
+            <button type="button" class="btn btn-light">Войти через TalantID</button>
+        {% else %}
+        {% endif %}
+    </nav>
+{% endblock %}</div>
+<div id="content">{% block content %}{% endblock %}</div>
+<script src="{{ url_for('static', filename='js/libs/popper.min.js') }}"></script>
+<script src="{{ url_for('static', filename='js/libs/jquery-3.3.1.slim.min.js') }}"></script>
+<script src="{{ url_for('static', filename='js/libs/bootstrap.min.js') }}"></script>
+<script src="{{ url_for('static', filename='js/base.js') }}"></script>
+{% block js %}{% endblock %}
 </body>
 <footer>
-    {% block footer %}{% endblock %}
+    {% block footer %}
+        <div class="col">
+            <div class="row">
+                <div class="col d-flex flex-row" style="gap: 1rem">
+                    <a href="/">Пользовательское соглашение</a>
+                    <a href="/">Политика конфиденциальности</a>
+                </div>
+                <div>
+                    <a href="#top">Перейти в начало страницы</a>
+                    <img alt="Вверх" src="{{ url_for('static', filename='images/arrow_drop_up.png') }}">
+                </div>
+            </div>
+        </div>
+        <div class="col">
+            <div class="row">
+                <div class="footer-second-block-text">
+                    <div class="col">
+                        <a href="/">Академия Наставников</a>
+                        <a href="/">Конкурс Талант 20.35</a>
+                        <a href="/">Олимпиада КД НТИ</a>
+                    </div>
+                    <div class="col">
+                        <a href="/">Фестиваль РУКАМИ</a>
+                        <a href="/">Карта Кружков</a>
+                        <a href="/">Кружковое движение</a>
+                    </div>
+                </div>
+                <div class="flex flex-column d-flex col-auto" style="gap: 5px; align-items: flex-end;">
+                    <img alt="Лого" width="200px" src="{{ url_for('static', filename='images/logo_white.png') }}">
+                    <small>© Кружковое движение 2021</small>
+                </div>
+            </div>
+        </div>
+    {% endblock %}
 </footer>
 </html>

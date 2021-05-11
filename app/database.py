@@ -1,13 +1,13 @@
 import sqlalchemy
-from sqlalchemy.orm import scoped_session, sessionmaker
+from decouple import config
 from sqlalchemy.ext.declarative import declarative_base
-import os
+from sqlalchemy.orm import scoped_session, sessionmaker
 
-uri = os.environ["DB_URI"]
+DB_URI = config("DB_URI")
 
 
 engine = sqlalchemy.create_engine(
-    uri
+    DB_URI
 )
 db_session = scoped_session(sessionmaker(autocommit=False,
                                          autoflush=False,
@@ -17,5 +17,4 @@ Base.query = db_session.query_property()
 
 
 def init_db():
-    import app.models
     Base.metadata.create_all(bind=engine)
