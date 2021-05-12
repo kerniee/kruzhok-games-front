@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+{% block head %}{{ super() }}{% endblock %}
+{% block title %}{{ super() }}{% endblock %}
+{% block css %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/game.css') }}"/>
+{% endblock %}
+
+{% block content %}
+    <div class="game-all">
+        <div class="bg-div d-flex bg-div flex-column align-items-center justify-content-center position-relative">
+            <img class="bg-img" alt="background" src="{{ url_for('static', filename=game.images_path + "/bg.png") }}">
+            <div style="position:absolute;" id="start_analysis"
+                 class="d-flex align-items-center justify-content-center d-flex flex-column">
+                <div class="row align-items-center p-3">
+
+                    <img alt="{{ game.name }}" src="{{ url_for('static', filename=game.images_path + "/icon.svg") }}"
+                         class="game-icon">
+                    {#            <object#}
+                    {#                    class="game-icon"#}
+                    {#                    type="image/svg+xml"#}
+                    {#                    data={{ url_for('static', filename=game.images_path + '/icon.svg') }}>#}
+                    {#            </object>#}
+                    <h1 class="px-3">{{ game.name }}</h1>
+
+                </div>
+                <button id="start_analysis_button" class="btn btn-large btn-light mt-3">Начать анализ</button>
+            </div>
+        </div>
+        <div class="text-block">
+            <h2 class="mb-3">Дополнительная информация</h2>
+            <ul>
+                <li>Роль: <a>Carry</a></li>
+                <li>Ваши показатели лучше, чем у <a>11%</a> игроков с таким же рейтингом</li>
+                <li>Средний процент полезности: <a>57%</a></li>
+                <li>Процент участия в командных убийствах: <a>54%</a></li>
+            </ul>
+        </div>
+    </div>
+{% endblock %}
+
+{% block js %}
+    <script type="text/javascript" src="{{ url_for('static', filename='js/game.js') }}"></script>
+{% endblock %}

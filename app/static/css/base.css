@@ -1,7 +1,12 @@
+@font-face {
+    font-family: "Gotham Pro";
+    src: url("/static/GothamPro-Light.woff") format("woff");
+}
+
 :root {
     --font-family-sans-serif: Gotham Pro, serif;
     --navbar-height: 76px;
-    --footer-height: 149px;
+    --footer-height: 147px;
 }
 
 #content {
@@ -21,6 +26,15 @@ a:hover {
 body {
     font-family: Gotham Pro, serif !important;
     background: #F8FCFD;
+}
+
+.block {
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 15vh 10vw;
+    gap: 1rem;
 }
 
 p {
@@ -136,6 +150,39 @@ p {
     margin: 0px 0px;
 }
 
+.avatar {
+    border-radius: 50%;
+    box-shadow:
+        0 0 0 2px white,
+        0 0 0 4px #0C7D84;
+}
+
+.games-slider {
+    width: 100%;
+    /*height: 410px;*/
+}
+
+.games-slider a {
+    height: 100%;
+    margin: 1rem;
+    outline: solid 0 #188E8E;
+    transition: outline-width 0.1s linear, padding 0.1s linear, filter 0.1s linear;
+}
+
+.games-slider a:hover {
+    filter: brightness(1.5);
+    margin: 0 1rem;
+    top: 20px;
+    position: inherit;
+    padding: 10px;
+    outline-width: 10px;
+}
+
+.games-slider img {
+    width: 100%;
+    height: 100%;
+}
+
 footer {
     height: var(--footer-height);
     display: flex;
@@ -182,5 +229,25 @@ small {
 
 .footer-second-block-text .col {
     min-width: fit-content;
+    min-width: -moz-available;
     justify-content: space-between;
+}
+
+.remove-btn {
+    background: none;
+	color: inherit;
+	border: none;
+	padding: 0;
+	font: inherit;
+	cursor: pointer;
+	outline: inherit;
+}
+
+.menu {
+    margin: 0.5rem 1.5rem;
+}
+
+.menu a {
+    padding: 0.5rem 0;
+    width: max-content;
 }

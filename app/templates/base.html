@@ -5,9 +5,19 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
+        <script src="{{ url_for('static', filename='js/libs/popper.min.js') }}"></script>
+        <script src="{{ url_for('static', filename='js/libs/jquery-3.3.1.slim.min.js') }}"></script>
+        <script src="{{ url_for('static', filename='js/libs/bootstrap.min.js') }}"></script>
+        <script src="{{ url_for('static', filename='js/base.js') }}"></script>
+
+        <script type="text/javascript" src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+        <script type="text/javascript" src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+
         <link rel="stylesheet" href="{{ url_for('static', filename='css/libs/bootstrap.min.css') }}">
         <link rel="stylesheet" href="{{ url_for('static', filename='css/base.css') }}">
+
         {% block css %}{% endblock %}
+
         <title>{% block title %}Командный игрок{% endblock %}</title>
 
         <!--
@@ -45,25 +55,57 @@
                 <a class="nav-link active" href="/">Главная</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="/logout">Методология</a>
+                <a class="nav-link" href="/methodology">Методология</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="/login">Узнать свой уровень</a>
+                <a class="nav-link" href="/check-level">Узнать свой уровень</a>
             </li>
         </ul>
-        {# {% if current_user.is_authenticated %} #}
-        {% if true %}
-            <button type="button" class="btn btn-light">Войти через TalantID</button>
-        {% else %}
-        {% endif %}
+        <div class="d-flex align-items-center">
+            {% if current_user.is_authenticated %}
+                <li class="pr-4 font-weight-bolder">Здравствуй, Иван</li>
+
+
+                <div class="btn-group">
+                <button class="dropdown-toggle remove-btn" type="button" id="dropdownMenuButton"
+                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <img alt="Аватар"
+                         src="{{ url_for('static', filename='images/avatar.png') }}"
+                         class="avatar">
+                </button>
+                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">
+                    <div class="d-flex flex-column menu">
+                        <a href="/auth/steam">Войти в Steam</a>
+                        <a href="/auth/battlenet">Войти в Battle.net</a>
+                        <a href="/profile">Профиль</a>
+                        <a href="/auth/logout">Выйти из аккаунта</a>
+                    </div>
+                </div>
+            {% else %}
+                <a href="/auth/login" type="button" class="btn btn-light">Войти через TalantID</a>
+            {% endif %}
+            </div>
     </nav>
 {% endblock %}</div>
-<div id="content">{% block content %}{% endblock %}</div>
-<script src="{{ url_for('static', filename='js/libs/popper.min.js') }}"></script>
-<script src="{{ url_for('static', filename='js/libs/jquery-3.3.1.slim.min.js') }}"></script>
-<script src="{{ url_for('static', filename='js/libs/bootstrap.min.js') }}"></script>
-<script src="{{ url_for('static', filename='js/base.js') }}"></script>
-{% block js %}{% endblock %}
+
+<div id="content">{% block content %}{% endblock %}
+    {% block games_slider %}
+        <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='slick/slick.css') }}"/>
+        <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='slick/slick-theme.css') }}"/>
+        <script type="text/javascript" src="{{ url_for('static', filename='slick/slick.min.js') }}"></script>
+        <script type="text/javascript" src="{{ url_for('static', filename='js/slider.js') }}"></script>
+        <div class="block flex-column">
+            <h1>Доступные игры</h1>
+            <div class="games-slider">
+                {% for i_game in games %}
+                    <a href={{ "/games/" + i_game.url_name }}>
+                        <img alt="{{ i_game.name }}"
+                             src="{{ url_for('static', filename=i_game.images_path + '/card.png') }}">
+                    </a>
+                {% endfor %}
+            </div>
+        </div>
+    {% endblock %}</div>
 </body>
 <footer>
     {% block footer %}
@@ -102,3 +144,5 @@
     {% endblock %}
 </footer>
 </html>
+
+{% block js %}{% endblock %}

@@ -3,9 +3,11 @@
 {% block head %}{{ super() }}{% endblock %}
 {% block title %}{{ super() }}{% endblock %}
 {% block css %}
-    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='slick/slick.css') }}"/>
-    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='slick/slick-theme.css') }}"/>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/index.css') }}"/>
+{% endblock %}
+
+{% block js %}
+    <script type="text/javascript" src="{{ url_for('static', filename='js/index.js') }}"></script>
 {% endblock %}
 
 {% block content %}
@@ -13,18 +15,23 @@
         <h1>Узнай свой уровень комадный игры</h1>
         <h4 class="pb-3">Расчет командного рейтинга на основе анализа игровых сессий</h4>
         <div class="flex-row">
-            <a href="games/dota2"><img alt="Dota 2"
-                                       src="{{ url_for('static', filename='images/dota2.svg') }}"
-                                       class="game-icon"></a>
-            <a href="games/overwatch"><img alt="Overwatch"
-                                           src="{{ url_for('static', filename='images/overwatch.svg') }}"
-                                           class="game-icon"></a>
-            <a href="games/csgo"><img alt="CS:GO"
-                                      src="{{ url_for('static', filename='images/csgo.svg') }}"
-
-                                      class="game-icon"></a>
+            {% for game in games %}
+                <a href={{ "games/" + game.url_name }}>
+                    <img alt="{{ game.name }}" src="{{ url_for('static', filename=game.images_path + '/icon.svg') }}"
+                         class="game-icon"></a>
+            {% endfor %}
+            {#            <a href="games/dota2"><img alt="Dota 2"#}
+            {#                                       src="{{ url_for('static', filename='images/dota2/icon.svg') }}"#}
+            {#                                       class="game-icon"></a>#}
+            {#            <a href="games/overwatch"><img alt="Overwatch"#}
+            {#                                           src="{{ url_for('static', filename='images/overwatch/icon.svg') }}"#}
+            {#                                           class="game-icon"></a>#}
+            {#            <a href="games/csgo"><img alt="CS:GO"#}
+            {#                                      src="{{ url_for('static', filename='images/csgo/icon.svg') }}"#}
+            {##}
+            {#                                      class="game-icon"></a>#}
         </div>
-        <button class="btn btn-large btn-primary bottom">Узнать больше</button>
+        <a href="/check-level" class="btn btn-large btn-primary bottom">Узнать свой уровень</a>
     </div>
     <div class="block methodology-block flex-column">
         <h1>Методология</h1>
@@ -32,29 +39,8 @@
             magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
             commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat
             nulla pariatur</p>
-        <button class="btn btn-large btn-light mt-5">Узнать</button>
+        <a href="/methodology" class="btn btn-large btn-light mt-5">Узнать</a>
     </div>
-    <div class="block flex-column">
-        <h1>Доступные игры</h1>
-        <div class="games-slider">
-            <a href="games/dota2">
-                <img alt="Dota 2" src="{{ url_for('static', filename='images/dota2_card.png') }}">
-            </a>
-            <a href="games/csgo">
-                <img alt="CS:GO" src="{{ url_for('static', filename='images/csgo_card.png') }}">
-            </a>
-            <a href="games/overwatch">
-                <img alt="Overwatch" src="{{ url_for('static', filename='images/overwatch_card.png') }}">
-            </a>
-        </div>
-    </div>
-{% endblock %}
-
-{% block js %}
-    <script type="text/javascript" src="//code.jquery.com/jquery-1.11.0.min.js"></script>
-    <script type="text/javascript" src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
-    <script type="text/javascript" src="{{ url_for('static', filename='slick/slick.min.js') }}"></script>
-    <script type="text/javascript" src="{{ url_for('static', filename='js/index.js') }}"></script>
 {% endblock %}
 
 {#{% block footer %}#}

@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+{% block head %}{{ super() }}{% endblock %}
+{% block title %}{{ super() }}{% endblock %}
+{% block css %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/methodology.css') }}"/>
+{% endblock %}
+
+{% block js %}
+    <script type="text/javascript" src="{{ url_for('static', filename='js/methodology.js') }}"></script>
+{% endblock %}
+
+{% block content %}
+    <div class="block"></div>
+    {% block games_slider %}
+    {% endblock %}
+{% endblock %}

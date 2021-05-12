@@ -31,45 +31,10 @@ h1 {
     padding: 0 10px;
 }
 
-.block {
-    text-align: center;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 15vh 10vw;
-    gap: 1rem;
-}
-
 .methodology-block {
     background: #0C7D84;
     color: white;
     gap: 2rem;
-}
-
-.games-slider {
-    width: 100%;
-    /*height: 410px;*/
-}
-
-.games-slider a {
-    height: 100%;
-    margin: 1rem;
-    outline: solid 0 #188E8E;
-    transition: outline-width 0.1s linear, padding 0.1s linear, filter 0.1s linear;
-}
-
-.games-slider a:hover {
-    filter: brightness(1.5);
-    margin: 0 1rem;
-    top: 20px;
-    position: inherit;
-    padding: 10px;
-    outline-width: 10px;
-}
-
-.games-slider img {
-    width: 100%;
-    height: 100%;
 }
 
 /*.games-slider img {*/
