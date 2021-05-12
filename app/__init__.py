@@ -13,6 +13,12 @@ app = Flask(__name__)
 app.config['SECRET_KEY'] = SECRET_KEY
 
 DB_URI = config("DB_URI", default='sqlite:///db.sqlite3')
+DEBUG = config("DEBUG", default=False, cast=bool)
+REDIRECT_URI = config("REDIRECT_URI", default="http://localhost:8080/api/return")
+AUTHORIZATION_ENDPOINT = config("AUTHORIZATION_ENDPOINT", default="https://talent.kruzhok.org/oauth/authorize/")
+TOKEN_ENDPOINT = config("TOKEN_ENDPOINT", default="https://talent.kruzhok.org/api/oauth/issue-token/")
+
+app.debug = DEBUG
 app.config['SQLALCHEMY_DATABASE_URI'] = DB_URI
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app)

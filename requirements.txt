@@ -5,3 +5,5 @@ flask
 flask-login
 flask-sqlalchemy
 python-decouple
+authlib
+requests

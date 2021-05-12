@@ -1,4 +1,6 @@
 from flask import render_template
+from flask_login import current_user, login_required
+
 from app.crud import *
 from app.models import *
 
@@ -25,8 +27,10 @@ def games(game_name):
 
 
 @app.route("/profile")
+@login_required
 def profile():
-    return render_template("profile.html")
+    me = get_me(current_user)
+    return render_template("profile.html", my_data=me)
 
 
 @app.route("/methodology")
