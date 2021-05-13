@@ -21,6 +21,6 @@ WORKDIR ${PROJECT_DIR}/app
 RUN rm -f db.sqlite3
 RUN python init_default_db.py
 
-EXPOSE 8080
-CMD gunicorn -w 1 --bind 0.0.0.0:8080 --log-level debug wsgi:app
+EXPOSE 80
+CMD gunicorn -w 1 --bind 0.0.0.0:80 --log-level debug wsgi:app
 
