@@ -1,6 +1,7 @@
+import os
 from collections import defaultdict
 
-from flask import render_template
+from flask import render_template, redirect, url_for, flash, send_from_directory
 from flask_login import current_user, login_required
 
 from app.crud import *
@@ -11,9 +12,23 @@ from app import app, login_manager
 GAMES = ("dota2", "overwatch", "csgo")
 
 
+def unauthorized():
+    flash("Для доступа к странице требуется авторизация")
+    return redirect(url_for('auth.login'))
+
+
+login_manager.unauthorized = unauthorized
+
+
 @login_manager.user_loader
 def load_user(user_id):
     return User.query.get(user_id)
+
+
+@app.route('/favicon.ico')
+def favicon():
+    return send_from_directory(os.path.join(app.root_path, 'static'),
+                               'favicon.ico', mimetype='image/vnd.microsoft.icon')
 
 
 @app.route('/')
@@ -56,5 +71,6 @@ def methodology():
 
 
 @app.route("/check-level")
+@login_required
 def check_level():
-    return render_template("check_level.html")
+    return render_template("check_level.html", games=Game.query.all())

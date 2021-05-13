@@ -2,7 +2,12 @@
     margin: 1rem;
 }
 
-button {
+#content h1 {
+    margin-bottom: 1.5rem;
+}
+
+
+#content button {
     padding: 0.3rem!important;
     margin: 0.2rem;
     color: #0C7D84!important;
@@ -21,11 +26,11 @@ table li {
     padding-right: 1rem;
 }
 
-.card {
+#content .card {
     margin-bottom: 0.5rem;
     box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.25);
 }
 
-.card-header {
+#content .card-header {
     background-color: #fff;
 }

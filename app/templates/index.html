@@ -20,16 +20,6 @@
                     <img alt="{{ game.name }}" src="{{ url_for('static', filename=game.images_path + '/icon.svg') }}"
                          class="game-icon"></a>
             {% endfor %}
-            {#            <a href="games/dota2"><img alt="Dota 2"#}
-            {#                                       src="{{ url_for('static', filename='images/dota2/icon.svg') }}"#}
-            {#                                       class="game-icon"></a>#}
-            {#            <a href="games/overwatch"><img alt="Overwatch"#}
-            {#                                           src="{{ url_for('static', filename='images/overwatch/icon.svg') }}"#}
-            {#                                           class="game-icon"></a>#}
-            {#            <a href="games/csgo"><img alt="CS:GO"#}
-            {#                                      src="{{ url_for('static', filename='images/csgo/icon.svg') }}"#}
-            {##}
-            {#                                      class="game-icon"></a>#}
         </div>
         <a href="/check-level" class="btn btn-large btn-primary bottom">Узнать свой уровень</a>
     </div>
@@ -42,27 +32,3 @@
         <a href="/methodology" class="btn btn-large btn-light mt-5">Узнать</a>
     </div>
 {% endblock %}
-
-{#{% block footer %}#}
-
-<!--
-<nav class="navbar fixed-bottom navbar-light bg-light justify-content-center">
-    <form class="mx-2" method="post" action="...">
-        <button type="submit" class="btn btn-success btn-lg d-none d-md-block">Подтвердить</button>
-        <button type="submit" class="btn btn-success btn d-block d-md-none">Подтвердить</button>
-    </form>
-    <form class="mx-2"  method="post" action="...">
-        <button type="submit" class="btn btn-danger btn-lg d-none d-md-block">Отклонить</button>
-        <button type="submit" class="btn btn-danger btn d-block d-md-none">Отклонить</button>
-    </form>
-    <form class="mx-2"  method="post" action="...">
-        <button type="submit" class="btn btn-dark btn-lg d-none d-md-block">Забраковать</button>
-        <button type="submit" class="btn btn-dark btn d-block d-md-none">Забраковать</button>
-    </form>
-    <form class="mx-2"  method="post" action="...">
-        <button type="submit" class="btn btn-light btn-lg d-none d-md-block">Сбросить</button>
-        <button type="submit" class="btn btn-light btn d-block d-md-none">Сбросить</button>
-    </form>
-</nav>
--->
-{#{% endblock %}#}

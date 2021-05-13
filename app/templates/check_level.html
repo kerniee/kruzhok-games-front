@@ -1,5 +1,4 @@
 {% extends "base.html" %}
-
 {% block head %}{{ super() }}{% endblock %}
 {% block title %}{{ super() }}{% endblock %}
 {% block css %}
@@ -7,15 +6,11 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='css/check_level.css') }}"/>
 {% endblock %}
 
-{% block js %}
-    <script type="text/javascript" src="{{ url_for('static', filename='js/check_level.js') }}"></script>
-{% endblock %}
-
 {% block content %}
     <div class="game-all">
         <div class="bg-div d-flex bg-div flex-column align-items-center justify-content-center position-relative">
             <img class="bg-img" alt="background" src="{{ url_for('static', filename='images/csgo/bg.png') }}">
-{#            <div class="bg-img"></div>#}
+            {#            <div class="bg-img"></div>#}
             <div style="position:absolute;" id="start_analysis"
                  class="d-flex align-items-center justify-content-center d-flex flex-column">
                 <div class="row align-items-center p-3">
@@ -31,7 +26,19 @@
 
                 </div>
                 <h4>Общий коммандный рейтинг: 85%</h4>
+                <a href="" style="color: #82bcc0; font-size: 1.5rem">Поделиться с друзьями</a>
             </div>
         </div>
+        <div style="padding: 2rem 5rem; width: 100%"
+             class="d-flex flex-column justify-content-center align-items-center">
+
+            <canvas id="myChart"></canvas>
+            <h4>Ваши показатели лучше, чем у <a>76%</a> игроков с таким же рейтингом</h4>
+        </div>
     </div>
+{% endblock %}
+
+{% block js %}
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script type="text/javascript" src="{{ url_for('static', filename='js/check_level.js') }}"></script>
 {% endblock %}
