@@ -3,6 +3,7 @@
 {% block head %}{{ super() }}{% endblock %}
 {% block title %}{{ super() }}{% endblock %}
 {% block css %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/game.css') }}"/>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/check_level.css') }}"/>
 {% endblock %}
 
@@ -11,7 +12,26 @@
 {% endblock %}
 
 {% block content %}
-    <div class="block"></div>
-    {% block games_slider %}
-    {% endblock %}
+    <div class="game-all">
+        <div class="bg-div d-flex bg-div flex-column align-items-center justify-content-center position-relative">
+            <img class="bg-img" alt="background" src="{{ url_for('static', filename='images/csgo/bg.png') }}">
+{#            <div class="bg-img"></div>#}
+            <div style="position:absolute;" id="start_analysis"
+                 class="d-flex align-items-center justify-content-center d-flex flex-column">
+                <div class="row align-items-center p-3">
+
+                    {#                    <img alt="{{ game.name }}" src="{{ url_for('static', filename=game.images_path + "/icon.svg") }}"#}
+                    {#                         class="game-icon">#}
+                    {#            <object#}
+                    {#                    class="game-icon"#}
+                    {#                    type="image/svg+xml"#}
+                    {#                    data={{ url_for('static', filename=game.images_path + '/icon.svg') }}>#}
+                    {#            </object>#}
+                    <h1 class="px-3">Общий коммандный рейтинг</h1>
+
+                </div>
+                <h4>Общий коммандный рейтинг: 85%</h4>
+            </div>
+        </div>
+    </div>
 {% endblock %}

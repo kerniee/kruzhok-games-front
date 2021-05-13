@@ -16,7 +16,7 @@
 }
 
 .bg-img {
-    width: 1405px!important;
+    width: calc(80vw)!important;
     margin: -10px;
     object-fit: cover;
     border-radius: 25px;
