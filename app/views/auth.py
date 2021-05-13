@@ -25,10 +25,14 @@ def login_post():
     password = request.form.get('password')
     remember = True if request.form.get('remember') else False
 
+    if not password or not email:
+        flash("Заполните все поля.")
+        return redirect(url_for('auth.login'))
+
     token = get_auth_token(email, password)
 
     if "non_field_errors" in token:
-        flash(token['non_field_errors'])
+        flash(token['non_field_errors'][0])
         return redirect(url_for('auth.login'))
 
     user = User.query.filter_by(username=email).first()

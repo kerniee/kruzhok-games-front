@@ -43,13 +43,13 @@
 <body>
 <div id="nav-bar">{% block navbar %}
     <nav class="navbar navbar-light">
-        <div class="logo">
+        <a href="/" class="logo">
             <img alt="Логотип Платформа Кружкового движения"
                  src="{{ url_for('static', filename='images/talent_symbol.svg') }}"
                  class="logo-sym-big">
             <div class="vl-line"></div>
             <p>Комадный игрок</p>
-        </div>
+        </a>
         <ul class="nav">
             <li class="nav-item">
                 <a class="nav-link active" href="/">Главная</a>

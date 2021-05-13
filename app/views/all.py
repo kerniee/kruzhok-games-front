@@ -37,6 +37,7 @@ def index():
 
 
 @app.route('/games/<game_name>')
+@login_required
 def games(game_name):
     game = get_game_by_url(game_name)
     if game is not None:
