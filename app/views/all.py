@@ -1,3 +1,5 @@
+from collections import defaultdict
+
 from flask import render_template
 from flask_login import current_user, login_required
 
@@ -29,7 +31,23 @@ def games(game_name):
 @app.route("/profile")
 @login_required
 def profile():
-    return render_template("profile.html")
+    me = defaultdict(lambda e: "Не указано", current_user.get_me())
+
+    groups = [
+        {
+            "name": "Личные данные",
+            "ФИО": me["last_name"] + " " + me["first_name"] + " " + me["middle_name"],
+            "Дата рождения": me["birthday"],
+            "Пол": "Мужской" if me["sex"] == 'm' else "Женский",
+            "Адрес": me["address"]
+        },
+        {
+            "name": "О себе",
+            "О себе": me["about"]
+        }
+    ]
+
+    return render_template("profile.html", groups=groups)
 
 
 @app.route("/methodology")

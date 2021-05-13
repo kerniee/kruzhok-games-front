@@ -5,6 +5,7 @@ from sqlalchemy import Column, Integer, String, ForeignKey, Text, Float, TypeDec
 from flask_login import UserMixin
 from app import db
 from sqlalchemy.orm import relationship
+import cachetools.func
 
 db.metadata.clear()
 
@@ -46,7 +47,8 @@ class User(db.Model, UserMixin):
         self.username = username
         self.password = password
 
-    def get_me(self):
+    @cachetools.func.ttl_cache(maxsize=128, ttl=2)
+    def get_me(self) -> dict:
         client = OAuth2Session(self.username, self.password, token=pickle.loads(self.token))
         resp = client.get('https://talent.kruzhok.org/api/users/me')
         if resp.status_code == 200:

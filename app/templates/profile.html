@@ -13,11 +13,44 @@
 {% block content %}
     <div style="padding: 15vh 10vw;">
         <h1>Профиль</h1>
-        <ul>
-            {% for key, value in current_user.get_me().items() %}
-                <li>{{ key }}: {{ value }}</li>
+        {#        <ul>#}
+        {#            {% for key, value in current_user.get_me().items() %}#}
+        {#                <li>{{ key }}: {{ value }}</li>#}
+        {#            {% endfor %}#}
+        {#        </ul>#}
+        <div id="accordion">
+            {% for group in groups %}
+                <div class="card">
+                    <div class="card-header" id="heading{{ loop.index }}">
+                        <h5 class="mb-0">
+                            <button class="remove-btn" data-toggle="collapse" data-target="#collapse{{ loop.index }}"
+                                    aria-expanded="true"
+                                    aria-controls="collapseOne">
+                                {{ group["name"] }}
+                            </button>
+                        </h5>
+                    </div>
+
+                    <div id="collapse{{ loop.index }}" class="collapse show" aria-labelledby="heading{{ loop.index }}"
+                         data-parent="#accordion">
+                        <table>
+                            <tbody>
+                            {% for key, value in group.items() %}
+                                <tr>
+                                    {% if key != 'name' %}
+                                        <th>
+                                            <li><b>{{ key }}</b>:</li>
+                                        </th>
+                                        <th>{{ value }}</th>
+                                    {% endif %}
+                                </tr>
+                            {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
             {% endfor %}
-        </ul>
+        </div>
     </div>
     {% block games_slider %}
     {% endblock %}
