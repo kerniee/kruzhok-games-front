@@ -11,10 +11,14 @@
 {% endblock %}
 
 {% block content %}
-    <div class="block">
-{#  ps:scale web=1  #}
-        {{ my_data }}
-        </div>
+    <div style="padding: 15vh 10vw;">
+        <h1>Профиль</h1>
+        <ul>
+            {% for key, value in current_user.get_me().items() %}
+                <li>{{ key }}: {{ value }}</li>
+            {% endfor %}
+        </ul>
+    </div>
     {% block games_slider %}
     {% endblock %}
 {% endblock %}

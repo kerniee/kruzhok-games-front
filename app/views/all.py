@@ -29,8 +29,7 @@ def games(game_name):
 @app.route("/profile")
 @login_required
 def profile():
-    me = get_me(current_user)
-    return render_template("profile.html", my_data=me)
+    return render_template("profile.html")
 
 
 @app.route("/methodology")

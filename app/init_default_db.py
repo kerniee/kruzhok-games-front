@@ -1,11 +1,9 @@
-from werkzeug.security import generate_password_hash
-
 from app.models import *
 from app import db
 
 db.create_all()
-u = User(username="admin", password=generate_password_hash("admin", method='sha256'))
-db.session.add(u)
+# u = User(username="admin", password=generate_password_hash("admin", method='sha256'))
+# db.session.add(u)
 
 dota2 = Game(name="Dota 2", url_name="dota2", images_path="images/dota2")
 csgo = Game(name="CS:GO", url_name="csgo2", images_path="images/csgo")

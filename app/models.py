@@ -1,8 +1,10 @@
+import pickle
+
+from authlib.integrations.requests_client import OAuth2Session
 from sqlalchemy import Column, Integer, String, ForeignKey, Text, Float, TypeDecorator
 from flask_login import UserMixin
 from app import db
 from sqlalchemy.orm import relationship
-
 
 db.metadata.clear()
 
@@ -43,6 +45,13 @@ class User(db.Model, UserMixin):
     def __init__(self, username=None, password=None):
         self.username = username
         self.password = password
+
+    def get_me(self):
+        client = OAuth2Session(self.username, self.password, token=pickle.loads(self.token))
+        resp = client.get('https://talent.kruzhok.org/api/users/me')
+        if resp.status_code == 200:
+            data = resp.json()
+            return data
 
     def __repr__(self):
         return '<User %r>' % self.username
