@@ -20,6 +20,3 @@ COPY app ${PROJECT_DIR}/app
 WORKDIR ${PROJECT_DIR}/app
 RUN rm -f db.sqlite3
 RUN python init_default_db.py
-
-EXPOSE 80
-

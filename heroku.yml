@@ -2,4 +2,4 @@ build:
   docker:
     web: Dockerfile
 run:
-  web: gunicorn -w 1 --bind 0.0.0.0:80 --log-level debug wsgi:app
+  web: gunicorn -w 1 --bind 0.0.0.0:$PORT wsgi:app
