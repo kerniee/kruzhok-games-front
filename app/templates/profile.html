@@ -11,7 +11,10 @@
 {% endblock %}
 
 {% block content %}
-    <div class="block">{{ my_data }}</div>
+    <div class="block">
+{#  ps:scale web=1  #}
+        {{ my_data }}
+        </div>
     {% block games_slider %}
     {% endblock %}
 {% endblock %}

@@ -22,5 +22,4 @@ RUN rm -f db.sqlite3
 RUN python init_default_db.py
 
 EXPOSE 80
-CMD gunicorn -w 1 --bind 0.0.0.0:80 --log-level debug wsgi:app
 
